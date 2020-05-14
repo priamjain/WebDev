@@ -1,0 +1,19 @@
+body{
+	background: #feffc3;
+	font-family: Nunito;
+}
+#mainnav .navbar-brand{
+	color: #EA1C2C;
+	font-size: 2rem;
+	
+}
+#mainnav{
+	font-size: 	2rem;
+	font-weight: 100;
+}
+#mainnav .nav-link{
+	color: white;
+}
+#mainnav .nav-link:hover {
+	color: #EA1C2C;
+}
