@@ -1,20 +1,26 @@
 //////////////////////////////////////////VARIABLES?//////////////////////////
 var colors = [];
 var num=6;
-genColors(num);
+// genColors(num);
 var reset = document.querySelector("#reset");
 var winColor = colors[Math.floor(Math.random()*6)];
 var h1 = document.querySelector("h1");
 var rgbDisplay = document.querySelector("#rgbDisplay")
-rgbDisplay.textContent = winColor;
+// rgbDisplay.textContent = winColor;
 var message = document.querySelector("#message");
 var squares = document.querySelectorAll(".square");
-newColors();
+// newColors();
 var easybtn =document.querySelector("#easy");
 var hardbtn =document.querySelector("#hard");
 
 
 ////////////////////////////////////////////DIRECT CODES////////////////////////////////////////////////
+reload();
+
+hardbtn.classList.add("selected");
+
+reset.addEventListener("click", reload);
+
 easybtn.addEventListener("click", function(){
 	num = 3;
 	hardbtn.classList.remove("selected");
@@ -26,7 +32,7 @@ hardbtn.addEventListener("click", function(){
 	num = 6
 	easybtn.classList.remove("selected");
 	this.classList.add("selected");
-	reload()
+	reload();
 });
 
 for(var i=0;i<squares.length;i++)
@@ -48,12 +54,12 @@ for(var i=0;i<squares.length;i++)
 	});
 };
 
-reset.addEventListener("click", reload);
 ///////////////////////////////////FUNCTIONS//////////////////////////////////////////////////////////
 function reload(){
+	colors = [];
 	genColors(num);
 	newColors();
-	winColor = colors[Math.floor(Math.random()*6)];
+	winColor = colors[Math.floor(Math.random()*num)];
 	rgbDisplay.textContent = winColor;
 	h1.style.backgroundColor = "#232323";
 	reset.textContent = "New Colors";
@@ -63,7 +69,14 @@ function reload(){
 function newColors(){
 	for(var i=0;i<squares.length;i++)
 	{
-		squares[i].style.backgroundColor = colors[i];
+		if(colors[i])
+		{
+			squares[i].style.backgroundColor = colors[i];
+			squares[i].style.display = "block";
+		}
+		else{
+			squares[i].style.display = "none";
+		}
 	}
 };
 
