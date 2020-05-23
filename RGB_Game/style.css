@@ -1,9 +1,14 @@
 body{
+	margin: 0 0;
 	background-color: #232323;
 	text-align: center;
 }
+#notiBar{
+	height: 30px;
+	background-color: white;
+}
 .square{
-	background-color: red;
+	background-color: #232323;
 	width:30%;
 	margin: 1.66%;
 	padding-top: 30%;
@@ -14,5 +19,13 @@ body{
 	max-width:600px; 
 }
 h1{
+	margin: 0 0;
 	color: white;
+}
+#rgbDisplay{
+	font-size: 3rem;
+	text-transform: uppercase;;	 
+}
+.selected{
+	background-color: blue;
 }
