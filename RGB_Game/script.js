@@ -10,30 +10,41 @@ var rgbDisplay = document.querySelector("#rgbDisplay")
 var message = document.querySelector("#message");
 var squares = document.querySelectorAll(".square");
 // newColors();
-var easybtn =document.querySelector("#easy");
-var hardbtn =document.querySelector("#hard");
+var buttons = document.querySelectorAll(".buttons");
 
 
 ////////////////////////////////////////////DIRECT CODES////////////////////////////////////////////////
 reload();
-
-hardbtn.classList.add("selected");
-
+ 
 reset.addEventListener("click", reload);
 
-easybtn.addEventListener("click", function(){
-	num = 3;
-	hardbtn.classList.remove("selected");
-	this.classList.add("selected");
-	reload();
-});
+for(var i=0;i<buttons.length;i++)
+{
+	buttons[i].addEventListener("click",function(){
+		this.textContent === "Easy" ? num=3:num=6;
+		for(var j=0;j<buttons.length;j++)
+		{
+			buttons[j].classList.remove("selected");
+		};
+		this.classList.add("selected");
+		reload();	
+	});
 
-hardbtn.addEventListener("click", function(){
-	num = 6
-	easybtn.classList.remove("selected");
-	this.classList.add("selected");
-	reload();
-});
+};
+
+// easybtn.addEventListener("click", function(){
+// 	num = 3;
+// 	hardbtn.classList.remove("selected");
+// 	this.classList.add("selected");
+// 	reload();
+// });
+
+// hardbtn.addEventListener("click", function(){
+// 	num = 6
+// 	easybtn.classList.remove("selected");
+// 	this.classList.add("selected");
+// 	reload();
+// });
 
 for(var i=0;i<squares.length;i++)
 {
@@ -58,15 +69,15 @@ for(var i=0;i<squares.length;i++)
 function reload(){
 	colors = [];
 	genColors(num);
-	newColors();
+	newColorsDisplay();
 	winColor = colors[Math.floor(Math.random()*num)];
 	rgbDisplay.textContent = winColor;
-	h1.style.backgroundColor = "#232323";
+	h1.style.backgroundColor = "steelblue";
 	reset.textContent = "New Colors";
 	message.textContent = "";
 }
 
-function newColors(){
+function newColorsDisplay(){
 	for(var i=0;i<squares.length;i++)
 	{
 		if(colors[i])
