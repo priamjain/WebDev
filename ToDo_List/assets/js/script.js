@@ -14,7 +14,14 @@ $("input[type='text']").keypress(function(event) {
 	/* Act on the event */
 	if(event.which === 13){
 		var newtodo = $(this).val();
-		$("ul").append("<li><span>X</span>"+newtodo+"</li>");
+		$("ul").append("<li><span><i class='fas fa-trash'></i></span>"+newtodo+"</li>");
 		$(this).val("");
 	}
+});
+
+$(".fa-plus").click(function(event) {
+	/* Act on the event */
+	$("input[type='text']").slideToggle('500');
+	$(".fa-plus").toggleClass('rotate');
+	
 });
