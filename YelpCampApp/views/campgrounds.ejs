@@ -1,0 +1,8 @@
+<%-include('partials/header')%>
+	<h1>Campground's Page</h1>
+	<%campgrounds.forEach(function(campground){%>
+	<div><%=campground.name%></div>
+	<img src="<%=campground.image%>">
+	<%});%>
+
+<%-include('partials/footer')%>
