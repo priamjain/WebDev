@@ -2,37 +2,18 @@ var express 		= 	require("express"),
 app  			= 	express(),
 bodyParser 		= 	require("body-parser"),
 mongoose 		=  	require('mongoose'),
-methodOveride 	=	require("method-override");
+methodOveride 	=	require("method-override"),
+Campground = require("./models/campground"),
+seedDB =  require("./seed");
 
+seedDB();
 
 app.use(methodOveride("_method"));
 mongoose.connect('mongodb://localhost/yelp_camp',{ useNewUrlParser: true, useUnifiedTopology: true });
-var campgroundSchema = new mongoose.Schema({
-	name:String,
-	image:String,
-	description:String
-});
 
-var Campground = mongoose.model("Campground",campgroundSchema);
-
-// Campground.create({name: "Camp Site 2", image: "https://d2g85s3tfaxbly.cloudfront.net/photo/camp/11974/Elk_Lake_Sign.jpg"},function(err,campground){
-// 	if(err){
-// 		console.log(err);
-// 	}
-// 	else{
-// 		console.log(campground)
-// 	}
-// });
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
-// var campgrounds = [
-// {name: "Camp Site 2", image: "https://d2g85s3tfaxbly.cloudfront.net/photo/camp/11974/Elk_Lake_Sign.jpg"},
-// {name: "Camp Site 1", image: "https://d2g85s3tfaxbly.cloudfront.net/photo/camp/11974/Elk_Lake_001.jpg"},
-// {name: "Camp Site 2", image: "https://d2g85s3tfaxbly.cloudfront.net/photo/camp/11974/Elk_Lake_Sign.jpg"},
-// {name: "Camp Site 1", image: "https://d2g85s3tfaxbly.cloudfront.net/photo/camp/11974/Elk_Lake_001.jpg"},
-// {name: "Camp Site 2", image: "https://d2g85s3tfaxbly.cloudfront.net/photo/camp/11974/Elk_Lake_Sign.jpg"},
-// {name: "Camp Site 3", image: "https://d2g85s3tfaxbly.cloudfront.net/photo/camp/11974/Elk_Lake_014.jpg"}
-// ]
+
 
 app.post("/campgrounds",function(req,res){
 	var values = req.body.values;
@@ -78,7 +59,7 @@ app.get("/campgrounds/new",function(req,res){
 });
 
 app.get("/campgrounds/:id",function(req,res){
-	Campground.findById(req.params.id,function(err,campground){
+	Campground.findById(req.params.id).populate("comments").exec(function(err,campground){
 		if(err)
 		{
 			console.log(err);
