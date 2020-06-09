@@ -1,4 +1,4 @@
-<%-include('partials/header')%>
+<%-include('../partials/header')%>
 <h1>Edit <%=campground.name%></h1>
 <form action="/campgrounds/<%=campground.id%>?_method=PUT" method="POST" style="block">
 	<input type="text" name="values[name]" value="<%=campground.name%>" placeholder="POST">
@@ -7,4 +7,4 @@
 	<button>Edit Campground</button>
 </form>
 <a href="/campgrounds">Back</a>
-<%-include('partials/footer')%>%>
+<%-include('../partials/footer')%>%>
